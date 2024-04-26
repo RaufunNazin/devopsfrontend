@@ -69,7 +69,10 @@ const Register = () => {
         pauseOnHover={false}
         theme="colored"
       />
-      <button onClick={() => navigate("/")} className="fixed top-8 flex items-center gap-x-4 lg:top-16">
+      <button
+        onClick={() => navigate("/")}
+        className="fixed top-8 flex items-center gap-x-4 lg:top-16"
+      >
         <img src="src/assets/car.png" alt="logo" className="w-16 h-16" />
         <div className="flex flex-col items-center justify-center font-bold">
           <div className="text-[28px] text-xdark -mb-5">Astarion&apos;s</div>
@@ -92,7 +95,8 @@ const Register = () => {
               placeholder="Name"
               className="w-full rounded-md border border-[#DED2D9] px-2 py-3 focus:border-transparent focus:outline-none focus:ring-1 focus:ring-xblue"
               onChange={(e) => setName(e.target.value)}
-            /><input
+            />
+            <input
               type="email"
               placeholder="Email"
               className="w-full rounded-md border border-[#DED2D9] px-2 py-3 focus:border-transparent focus:outline-none focus:ring-1 focus:ring-xblue"
@@ -119,7 +123,12 @@ const Register = () => {
           </div>
           <div className="flex justify-between -my-6">
             <div className="text-xlightgray">Already have an account?</div>
-            <button onClick={() => navigate("/login")} className="text-xblue transition-all duration-200 hover:underline hover:text-blue-600">Login Here!</button>
+            <button
+              onClick={() => navigate("/login")}
+              className="text-xblue transition-all duration-200 hover:underline hover:text-blue-600"
+            >
+              Login Here!
+            </button>
           </div>
         </div>
       </div>
