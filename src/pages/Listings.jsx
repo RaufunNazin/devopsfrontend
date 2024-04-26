@@ -1,6 +1,12 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { Modal, Table } from "antd";
+import Column from "antd/es/table/Column";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 
 const Listings = () => {
+  const [offerModal, setOfferModal] = useState(false);
   const cars = [
     {
       model: "Toyota Corolla",
@@ -48,6 +54,34 @@ const Listings = () => {
       image: "5.jpg",
     },
   ];
+  const offers = [
+    {
+      id: 1,
+      name: "John Doe",
+      offer_price: 23000,
+    },
+    {
+      id: 2,
+      name: "Emily Smith",
+      offer_price: 26000,
+    },
+    {
+      id: 3,
+      name: "Michael Johnson",
+      offer_price: 21000,
+    },
+    {
+      id: 4,
+      name: "Sophia Williams",
+      offer_price: 24500,
+    },
+    {
+      id: 5,
+      name: "Christopher Brown",
+      offer_price: 25500,
+    },
+  ];
+
   return (
     <div>
       <Navbar />
@@ -78,19 +112,57 @@ const Listings = () => {
                       : car.description.slice(0, 70).concat("...")}
                   </p>
                 </div>
-                <div className="text-center py-3 bg-xdark text-white rounded-b-md">
+                <button
+                  onClick={() => setOfferModal(true)}
+                  className="text-center py-3 bg-xdark text-white rounded-b-md w-full"
+                >
                   View Offers
-                </div>
+                </button>
               </div>
             );
           })}
         </div>
-        <div>
-          {
-            // Listings
-          }
-        </div>
       </div>
+      <Modal
+        title="Offer List"
+        centered
+        open={offerModal}
+        okButtonProps={{
+          style: { display: "none" },
+        }}
+        onCancel={() => setOfferModal(false)}
+      >
+        <Table dataSource={offers} pagination={{ defaultPageSize: 5 }}>
+          <Column title="Name" dataIndex="name" key="id" />
+          <Column
+            title="Price Offered"
+            dataIndex="offer_price"
+            key="id"
+            render={(offer, record) => {
+              return <div>{parseInt(record.offer_price) / 1000}K</div>;
+            }}
+          />
+          <Column
+            title="Action"
+            dataIndex="action"
+            key="id"
+            render={() => {
+              return (
+                <div className="flex items-center gap-x-4">
+                  <button className="flex text-green-600 items-center gap-x-1">
+                    <FaCheck />
+                    <div>Accept</div>
+                  </button>
+                  <button className="flex text-xred items-center gap-x-1">
+                    <RxCross2 />
+                    <div>Reject</div>
+                  </button>
+                </div>
+              );
+            }}
+          />
+        </Table>
+      </Modal>
     </div>
   );
 };
