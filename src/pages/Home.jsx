@@ -1,6 +1,11 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [offerModal, setOfferModal] = useState(false);
   const cars = [
     {
       model: "Toyota Corolla",
@@ -94,6 +99,8 @@ const Home = () => {
     },
   ];
 
+  const placeOffer = () => {};
+
   return (
     <div>
       <Navbar />
@@ -124,11 +131,15 @@ const Home = () => {
           className="outline-none border px-2 py-0.5 rounded-md w-full"
         />
         <div className="flex justify-end mt-2">
-          <button className="bg-xdark text-white px-5 py-1 rounded-md">Post</button>
+          <button className="bg-xdark text-white px-5 py-1 rounded-md">
+            Post
+          </button>
         </div>
       </div>
 
-      <div className="text-center text-xl text-xlightgray mt-5 mb-2">Browse featured cars</div>
+      <div className="text-center text-xl text-xlightgray mt-5 mb-2">
+        Browse featured cars
+      </div>
       <div className="grid grid-cols-3 px-16 gap-8 mb-8">
         {cars.map((car, id) => {
           return (
@@ -164,13 +175,43 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <div className="text-center py-3 bg-xdark text-white rounded-b-md">
-                Place Order
+              <div className="flex">
+                <button
+                  onClick={() => {
+                    setOfferModal(true);
+                  }}
+                  className="text-center py-3 bg-xdark text-white rounded-b-md border border-xdark rounded-r-none w-full"
+                >
+                  Send your offer
+                </button>
+                <button
+                  onClick={() => {
+                    navigate(`/details`, {
+                      state: car,
+                    });
+                  }}
+                  className="text-center py-3 border-t border-xdark text-xdark rounded-b-md rounded-l-none w-full"
+                >
+                  View details
+                </button>
               </div>
             </div>
           );
         })}
       </div>
+      <Modal
+        title="Place Offer"
+        centered
+        open={offerModal}
+        onOk={() => placeOffer()}
+        onCancel={() => setOfferModal(false)}
+      >
+        <input
+          type="number"
+          placeholder="Enter Your Price"
+          className="outline-none border px-2 py-0.5 rounded-md w-full"
+        />
+      </Modal>
     </div>
   );
 };
