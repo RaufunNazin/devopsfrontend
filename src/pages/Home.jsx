@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import { Modal } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [offerModal, setOfferModal] = useState(false);
   const cars = [
     {
@@ -173,14 +175,26 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={() => {
-                  setOfferModal(true);
-                }}
-                className="text-center py-3 bg-xdark text-white rounded-b-md w-full"
-              >
-                Send your offer
-              </button>
+              <div className="flex">
+                <button
+                  onClick={() => {
+                    setOfferModal(true);
+                  }}
+                  className="text-center py-3 bg-xdark text-white rounded-b-md border border-xdark rounded-r-none w-full"
+                >
+                  Send your offer
+                </button>
+                <button
+                  onClick={() => {
+                    navigate(`/details`, {
+                      state: car,
+                    });
+                  }}
+                  className="text-center py-3 border-t border-xdark text-xdark rounded-b-md rounded-l-none w-full"
+                >
+                  View details
+                </button>
+              </div>
             </div>
           );
         })}
