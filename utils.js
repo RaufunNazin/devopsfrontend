@@ -26,13 +26,6 @@ useEffect(() => {
 
 import { useEffect } from "react";
 
-const data = {
-  name: name,
-  email: email,
-  password: password,
-  phone: phone,
-};
-
 async function handleCreateUser() {
   await fetch("http://localhost:8000/users", {
     method: "POST",

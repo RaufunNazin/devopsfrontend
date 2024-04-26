@@ -9,9 +9,7 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState(null);
-
-  console.log(image);
+  const [phone, setPhone] = useState("");
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
@@ -21,40 +19,18 @@ const Register = () => {
 
   const register = () => {
     api
-      .post("/auth/register", {
+      .post("/users", {
         name: name,
         email: email,
         password: password,
+        phone: phone,
       })
-      .then((res) => {
-        if (res.status === 200) {
-          navigate("/");
-        }
-      })
+      .then((res) => console.log(res))
       .catch((err) => {
         console.log(err);
-        toast.error(err.response.data?.message);
+        toast.error(err.response.data?.detail);
       });
   };
-
-  const data = {
-    image_data: image,
-  };
-
-  // console.log(data);
-
-  async function handleSend() {
-    await fetch("http://localhost:8000/cars/upload/1", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((res) => {
-      console.log(res);
-    });
-  }
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-y-8">
@@ -71,12 +47,12 @@ const Register = () => {
       />
       <button
         onClick={() => navigate("/")}
-        className="fixed top-8 flex items-center gap-x-4 lg:top-16"
+        className="fixed left-8 flex items-center gap-x-2 lg:top-8"
       >
-        <img src="src/assets/car.png" alt="logo" className="w-16 h-16" />
+        <img src="src/assets/car.png" alt="logo" className="w-8 h-8" />
         <div className="flex flex-col items-center justify-center font-bold">
-          <div className="text-[28px] text-xdark -mb-5">Astarion&apos;s</div>
-          <div className="text-xdark text-[40px]">Garage</div>
+          <div className="text-[14px] text-xdark -mb-2.5">Astarion&apos;s</div>
+          <div className="text-xdark text-[20px]">Garage</div>
         </div>
       </button>
       <div className="flex flex-col gap-y-6">
@@ -101,6 +77,12 @@ const Register = () => {
               placeholder="Email"
               className="w-full rounded-md border border-[#DED2D9] px-2 py-3 focus:border-transparent focus:outline-none focus:ring-1 focus:ring-xblue"
               onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Phone"
+              className="w-full rounded-md border border-[#DED2D9] px-2 py-3 focus:border-transparent focus:outline-none focus:ring-1 focus:ring-xblue"
+              onChange={(e) => setPhone(e.target.value)}
             />
             <div className="flex flex-col gap-y-2">
               <input
