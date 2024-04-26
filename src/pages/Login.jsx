@@ -53,12 +53,12 @@ const Login = () => {
       />
       <button
         onClick={() => navigate("/")}
-        className="fixed top-8 flex items-center gap-x-4 lg:top-16"
+        className="fixed left-8 flex items-center gap-x-2 lg:top-8"
       >
-        <img src="src/assets/car.png" alt="logo" className="w-16 h-16" />
+        <img src="src/assets/car.png" alt="logo" className="w-8 h-8" />
         <div className="flex flex-col items-center justify-center font-bold">
-          <div className="text-[28px] text-xdark -mb-5">Astarion&apos;s</div>
-          <div className="text-xdark text-[40px]">Garage</div>
+          <div className="text-[14px] text-xdark -mb-2.5">Astarion&apos;s</div>
+          <div className="text-xdark text-[20px]">Garage</div>
         </div>
       </button>
       <div className="flex flex-col items-center gap-y-2">
