@@ -50,10 +50,13 @@ const Login = () => {
                 pauseOnHover={false}
                 theme="colored"
             />
-            <div className="fixed top-8 flex items-center gap-x-4 lg:top-16">
-                <img src="src/assets/car.png" alt="logo" className="w-12 h-12" />
-                <p className="text-3xl font-bold text-xdark lg:text-5xl">Astarion's Garage</p>
-            </div>
+            <button onClick={() => navigate("/")} className="fixed top-8 flex items-center gap-x-4 lg:top-16">
+                <img src="src/assets/car.png" alt="logo" className="w-16 h-16" />
+                <div className="flex flex-col items-center justify-center font-bold">
+                    <div className="text-[28px] text-xdark -mb-5">Astarion&apos;s</div>
+                    <div className="text-xdark text-[40px]">Garage</div>
+                </div>
+            </button>
             <div className="flex flex-col items-center gap-y-2">
                 <p className="text-3xl font-black text-xgray lg:text-4xl">
                     Login to your account
