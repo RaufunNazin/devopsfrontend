@@ -7,7 +7,10 @@ import { FaUser } from "react-icons/fa6";
 const Navbar = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const logout = () => {};
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login", { state: "logout" });
+  };
   return (
     <div className="border-b py-2 px-16 flex justify-between items-center shadow-sm">
       <button
