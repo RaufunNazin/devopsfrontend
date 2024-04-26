@@ -18,7 +18,7 @@ const Login = () => {
 
   const login = () => {
     api
-      .post("/auth/login", {
+      .post("/login", {
         email: email,
         password: password,
       })
